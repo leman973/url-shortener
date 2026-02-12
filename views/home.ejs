@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e4e9f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .form {
+            margin-top: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .generated-url {
+            text-align: center;
+            margin: 20px auto;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .generated-url a {
+            color: #e74c3c;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .home-btn {
+            display: block;
+            margin: 10px auto 30px auto;
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        p {
+            text-align: center;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            background: #ffffff;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: 600;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+</head>
+
+<body>
+    <h1>URL Shortener</h1>
+
+    <% if (id && baseUrl) { %>
+        <div class="generated-url">
+            <p>URL Generated: <a href="<%= baseUrl %>/url/<%= id %>" target="_blank"><%= baseUrl %>/<%= id %></a></p>
+            <a href="/" class="home-btn">Back to Home</a>
+        </div>
+    <% } %>
+
+    <div class="form">
+        <form method="POST" action="/url">
+            <label for="">Enter Your Original URL: </label>
+            <input type="text" name="url" placeholder="https://example.com" required>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+
+    <div>
+        <% if (urls && baseUrl) { %>
+            <table>
+                <thead>
+                    <th>S.No</th>
+                    <th>ShortId URL</th>
+                    <th>Redirect</th>
+                    <th>Clicks</th>
+                </thead>
+                <tbody>
+                    <% urls.forEach((url,index)=> { %>
+                        <tr>
+                            <td><%= index+1 %></td>
+                            <td><a href="<%= baseUrl %>/url/<%= url.shortId %>" target="_blank"><%= baseUrl %>/<%= url.shortId %></a></td>
+                            <td><%= url.redirectURL %></td>
+                            <td><%= url.visitHistory.length %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
+</body>
+
+</html>

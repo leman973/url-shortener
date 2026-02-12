@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f2f4f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .loginbox {
+            width: 420px;
+            padding: 40px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .loginbox h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .loginbox label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+
+        .loginbox input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .loginbtn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #4a90e2;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .signIn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .error-msg {
+            background: #ffe0e0;
+            color: #d63031;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+
+        .signInbtn {
+            background: none;
+            border: none;
+            color: #4a90e2;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+</head>
+
+<body>
+    <div class="loginbox">
+        <h1>LogIn</h1>
+
+        <% if (error) { %>
+            <div class="error-msg">
+                <%= error %>
+            </div>
+            <% } %>
+
+                <form action="/user/login" method="post">
+                    <label for="">Email: </label>
+                    <input type="text" required placeholder="example@gmail.com" name="email">
+
+                    <label for="">Password: </label>
+                    <input type="text" name="password" placeholder="Enter your password here..">
+
+                    <button type="submit" class="loginbtn">LogIn</button>
+                </form>
+                <div class="signIn">
+                    <span>Not Registered?</span>
+                    <a href="/signup" class="signInbtn">SignIn</a>
+                </div>
+    </div>
+</body>
+
+</html>
